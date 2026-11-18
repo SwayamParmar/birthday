@@ -22,9 +22,9 @@ const useCanopy = (count: number) =>
       const a = x * x + y * y - 1;
       if (a * a * a - x * x * y * y * y > 0) continue;
       pts.push({
-        x: 150 + x * 92,
-        y: 112 - y * 84,
-        s: 0.55 + rnd() * 0.6,
+        x: 150 + x * 100,
+        y: 118 - y * 92,
+        s: 0.85 + rnd() * 0.65,
         c: LEAF_COLORS[Math.floor(rnd() * LEAF_COLORS.length)],
         d: 1.3 + (1.2 - y) * 0.9 + rnd() * 0.6,
         r: rnd() * 50 - 25,
@@ -77,7 +77,7 @@ const FallingHearts = () => {
 /** Step 4: a tree grows and blooms into a heart while the greeting types in. */
 export const TreeScene = ({ onDone }: { onDone: () => void }) => {
   const isSmall = typeof window !== "undefined" && window.innerWidth < 640;
-  const canopy = useCanopy(isSmall ? 70 : 110);
+  const canopy = useCanopy(isSmall ? 110 : 150);
   const [ready, setReady] = useState(false);
 
   useEffect(() => {

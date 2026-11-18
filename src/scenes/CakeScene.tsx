@@ -82,7 +82,13 @@ export const CakeScene = ({ onDone }: { onDone: () => void }) => {
         {/* Flame */}
         {stage !== "baking" && (
           <motion.g initial={{ scale: 0 }} animate={{ scale: 1 }} style={{ transformOrigin: "120px 2px" }}>
-            <circle cx="120" cy="-6" r="16" fill="#FFB547" opacity="0.25" className="flame-glow" />
+            <defs>
+              <radialGradient id="flame-halo">
+                <stop offset="0%" stopColor="#FFD27A" stopOpacity="0.55" />
+                <stop offset="100%" stopColor="#FFB547" stopOpacity="0" />
+              </radialGradient>
+            </defs>
+            <circle cx="120" cy="-6" r="22" fill="url(#flame-halo)" className="flame-glow" />
             <path className="flame" d="M120 -18 C126 -10 128 -4 124 2 C122 5 118 5 116 2 C112 -4 114 -10 120 -18 Z" fill="#FFC94D" />
             <path className="flame" d="M120 -10 C123 -6 123 -2 121 1 C120 2 119.5 2 119 1 C117 -2 117 -6 120 -10 Z" fill="#FFF3D6" />
           </motion.g>

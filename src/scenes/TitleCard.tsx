@@ -31,7 +31,7 @@ export const TitleCard = ({ onDone }: { onDone: () => void }) => {
 
       <h1 className="relative font-display font-black leading-[0.95] tracking-tight text-cream drop-shadow-[0_8px_0_rgba(80,0,60,0.25)]">
         {LINES.map((line) => (
-          <span key={line} className="block text-[clamp(3.5rem,17vw,9rem)]">
+          <span key={line} className="block whitespace-nowrap text-[clamp(3rem,16vw,9rem)]">
             {line.split("").map((ch) => {
               const i = n++;
               return (
