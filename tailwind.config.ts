@@ -2,97 +2,39 @@ import type { Config } from "tailwindcss";
 import tailwindcssAnimate from "tailwindcss-animate";
 
 export default {
-  darkMode: ["class"],
-  content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
-  prefix: "",
+  content: ["./index.html", "./src/**/*.{ts,tsx}"],
   theme: {
-    container: {
-      center: true,
-      padding: "2rem",
-      screens: {
-        "2xl": "1400px",
-      },
-    },
     extend: {
       colors: {
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
-        primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
-        },
-        secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
-        },
-        destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
-        },
-        muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
-        },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
-        },
-        popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
-        },
-        card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
-        },
-        sidebar: {
-          DEFAULT: "hsl(var(--sidebar-background))",
-          foreground: "hsl(var(--sidebar-foreground))",
-          primary: "hsl(var(--sidebar-primary))",
-          "primary-foreground": "hsl(var(--sidebar-primary-foreground))",
-          accent: "hsl(var(--sidebar-accent))",
-          "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
-          border: "hsl(var(--sidebar-border))",
-          ring: "hsl(var(--sidebar-ring))",
-        },
-        birthday: {
-          pink: "hsl(var(--birthday-pink))",
-          purple: "hsl(var(--birthday-purple))",
-          gold: "hsl(var(--birthday-gold))",
-          sky: "hsl(var(--birthday-sky))",
-          coral: "hsl(var(--birthday-coral))",
-          mint: "hsl(var(--birthday-mint))",
-        },
+        plum: { 900: "#160B26", 800: "#24123A", 700: "#3A1E55" },
+        ivory: "#FFF9F2",
+        ink: "#2B1B3D",
+        lilac: "#E2D4F3",
+        violet: { DEFAULT: "#6C3BD1", deep: "#9B3FC4" },
+        rose: { DEFAULT: "#FF6F91", deep: "#E0456B" },
+        tangerine: "#FF9A62",
+        marigold: "#FFB547",
+        cream: "#FFF4E8",
+        mint: "#2FAF7F",
+        berry: "#A3195B",
+        lavender: "#9D7BFF",
+        aqua: "#3DDBD9",
+        paper: "#FFF8EA",
       },
-      borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+      fontFamily: {
+        sans: ["Quicksand", "system-ui", "sans-serif"],
+        display: ["Outfit", "system-ui", "sans-serif"],
+        hand: ["Caveat", "cursive"],
+        letter: ["Kalam", "cursive"],
+        serif: ["Fraunces", "Georgia", "serif"],
       },
-      keyframes: {
-        "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
-        },
-        "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
-        },
+      backgroundImage: {
+        night: "linear-gradient(180deg, #120822 0%, #22103A 55%, #3A1438 100%)",
+        dawn: "linear-gradient(180deg, #FFF3EC 0%, #FFDDE3 100%)",
+        blush: "linear-gradient(160deg, #FFF2E8 0%, #FFD9DC 60%, #FFCBC4 100%)",
       },
-      animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
+      boxShadow: {
+        glow: "0 12px 32px -10px rgba(255, 111, 145, 0.65)",
       },
     },
   },
