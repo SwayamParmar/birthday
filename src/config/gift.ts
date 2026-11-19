@@ -5,7 +5,7 @@
  *  Replace every placeholder below with your own words.
  *
  *  Assets (optional, drop them into /public):
- *    public/photos/1.jpg … public/photos/5.jpg   → memory lane polaroids
+ *    public/photos/1.jpeg … public/photos/5.jpeg   → memory lane polaroids
  *    public/music.mp3                            → background music
  *                                                  (mute button appears
  *                                                  only if this file exists)
@@ -32,31 +32,44 @@ export interface GiftConfig {
   photoCaptions: [string, string, string, string, string];
 }
 
-const NAME = "Their Name"; // ← recipient
-const SENDER = "Your Name"; // ← you
+const NAME = "Needhi"; // ← recipient
+const SENDER = "Swayam"; // ← you
 
 export const gift: GiftConfig = {
   name: NAME,
   sender: SENDER,
-  pin: "1234", // ← change me (4 digits)
+  pin: "2011", // ← change me (4 digits)
 
   reasons: [
-    "Reason #1: something small you adore about them",
-    "Reason #2: a moment they made better just by being there",
-    "Reason #3: a way they've helped you grow",
-    "Reason #4: something about them that always makes you smile",
-    "Reason #5: why the world is lucky to have them",
+    "You're my comfort person in a world full of chaos🧿🤍",
+    "Just having you around makes everything feel easier",
+    "With you, I can be my silly, weird, real self🤪💗",
+    "You make me feel so loved, and you don't even try",
+    "My best friend, and one of my favourite blessings🧿✨",
   ],
 
   letter: {
     greeting: `Dear ${NAME},`,
-    body:
-      "Write your letter here. Tell them what this past year meant, a memory you keep coming back to, " +
-      "and what you hope the next one brings. Keep it honest — it will appear one letter at a time, " +
-      "so a few heartfelt sentences go a long way.",
+    body: [
+      "Happy Birthday to my favourite human! 🎀",
+      "I honestly don't know where to start, but I'm so grateful to have you in my life.",
+      "Who would've thought our first meet at the ISKCON temple, and then Juhu Beach, would turn into such a beautiful friendship? " +
+        "And our next meet, watching a movie together, gave us even more memories to hold on to. " +
+        "I'm so glad we met, and that life gave me a friend like you.",
+      "Thank you for being your lovely self, and for making even the ordinary moments feel special. " +
+        "I hope you always keep smiling and get everything your heart wishes for.",
+      "Stay happy, stay blessed and never change ❤️🎉",
+    ].join("\n\n"),
   },
 
-  signature: ["Always yours,", `${SENDER}`],
+  // The letter scene prefixes the last line with "— ", giving "With love, — Swayam".
+  signature: ["With love,", SENDER],
 
-  photoCaptions: ["Caption one", "Caption two", "Caption three", "Caption four", "Caption five"],
+  photoCaptions: [
+    "That smile in the golden light, my favourite view",
+    "Denim jacket, neon lights and that little smirk",
+    "Hair flip queen, main character energy always",
+    "Golden hour, but your smile still wins every time",
+    "Pout mode on, and somehow still the cutest",
+  ],
 };

@@ -100,6 +100,14 @@ const Envelope = ({ open, onOpen }: { open: boolean; onOpen: () => void }) => (
   </button>
 );
 
+/** Whole letter finishes typing in ~25s regardless of length (tap skips). */
+const LETTER_DURATION_MS = 25_000;
+const LETTER_DELAY = 500;
+const LETTER_SPEED = Math.max(
+  8,
+  Math.round((LETTER_DURATION_MS - LETTER_DELAY) / Math.max(1, Array.from(gift.letter.body).length)),
+);
+
 /** Step 8: sealed envelope → tap → letter types itself out → signature → Continue. */
 export const LetterScene = ({ onDone }: { onDone: () => void }) => {
   const [stage, setStage] = useState<Stage>("sealed");
@@ -138,8 +146,8 @@ export const LetterScene = ({ onDone }: { onDone: () => void }) => {
               className="letter-paper relative w-full max-w-[34rem] rounded-2xl border border-[#E9CF98] px-6 pb-7 pt-6 text-left shadow-[0_30px_60px_-25px_rgba(0,0,0,0.75)] sm:px-9"
             >
               <h3 className="border-b border-[#E3CFA6] pb-2 font-hand text-3xl font-bold text-[#7A4A1E]">{gift.letter.greeting}</h3>
-              <p className="mt-3 font-letter text-[1.15rem] leading-8 text-[#3E2A20] sm:text-[1.25rem]">
-                <TypeWriter text={gift.letter.body} speed={32} delay={500} glowTail={6} instant={skip} onComplete={() => setTyped(true)} />
+              <p className="mt-3 whitespace-pre-line font-letter text-[1.15rem] leading-8 text-[#3E2A20] sm:text-[1.25rem]">
+                <TypeWriter text={gift.letter.body} speed={LETTER_SPEED} delay={LETTER_DELAY} glowTail={6} instant={skip} onComplete={() => setTyped(true)} />
               </p>
               {typed && (
                 <FadeIn delay={0.3} className="mt-5 text-right font-hand text-2xl font-bold leading-tight text-[#B5762A]">

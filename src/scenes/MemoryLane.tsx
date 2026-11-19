@@ -5,7 +5,7 @@ import { gift } from "@/config/gift";
 import { asset, cn } from "@/lib/utils";
 import { FadeIn, PillButton } from "@/components/Chrome";
 
-const PHOTOS = [1, 2, 3, 4, 5].map((n) => asset(`photos/${n}.jpg`));
+const PHOTOS = [1, 2, 3, 4, 5].map((n) => asset(`photos/${n}.jpeg`));
 const TILT = [-2.5, 2, -1.5, 2.5, -2];
 const GAP = 22;
 
@@ -21,14 +21,14 @@ const Polaroid = ({ src, caption, index, active }: { src: string; caption: strin
         {failed ? (
           <div className="flex h-full w-full flex-col items-center justify-center gap-2 bg-gradient-to-br from-lavender/40 to-rose/40 text-cream/80">
             <ImageOff size={28} aria-hidden="true" />
-            <span className="text-xs font-semibold">public/photos/{index + 1}.jpg</span>
+            <span className="text-xs font-semibold">public/photos/{index + 1}.jpeg</span>
           </div>
         ) : (
           <img src={src} alt={caption || `Memory ${index + 1}`} draggable={false} onError={() => setFailed(true)} className="h-full w-full select-none object-cover" />
         )}
       </div>
-      <figcaption className="flex h-12 items-center justify-center gap-1.5 px-2 font-hand text-xl font-bold text-plum-800">
-        <span className="truncate">{caption}</span> <span className="text-marigold" aria-hidden="true">💛</span>
+      <figcaption className="flex min-h-[3.75rem] items-center justify-center gap-1.5 px-2 py-1.5 text-center font-hand text-lg font-bold leading-tight text-plum-800">
+        <span className="line-clamp-2">{caption}</span> <span className="shrink-0 text-marigold" aria-hidden="true">💛</span>
       </figcaption>
     </motion.figure>
   );
