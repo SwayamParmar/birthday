@@ -6,7 +6,7 @@
  *
  *  Assets (optional, drop them into /public):
  *    public/photos/1.jpeg … public/photos/5.jpeg   → memory lane polaroids
- *    public/music.mp3                            → background music
+ *    public/music/blue-instrumental.mp3          → background music
  *                                                  (mute button appears
  *                                                  only if this file exists)
  * ─────────────────────────────────────────────────────────────

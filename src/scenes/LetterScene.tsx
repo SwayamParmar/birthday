@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { Heart, Sparkles, Star } from "lucide-react";
 import { gift } from "@/config/gift";
 import { FadeIn, PillButton } from "@/components/Chrome";
 import { TypeWriter } from "@/components/TypeWriter";
@@ -9,8 +10,16 @@ type Stage = "sealed" | "opening" | "reading";
 const FlyingBits = () => {
   const bits = useMemo(
     () =>
-      ["💌", "✨", "💗", "🎂", "✨", "💛", "💗"].map((e, i) => ({
-        e,
+      [
+        { Icon: Heart, c: "text-white" },
+        { Icon: Sparkles, c: "text-marigold" },
+        { Icon: Heart, c: "text-white" },
+        { Icon: Star, c: "text-marigold" },
+        { Icon: Sparkles, c: "text-white" },
+        { Icon: Heart, c: "text-white" },
+        { Icon: Sparkles, c: "text-marigold" },
+      ].map((e, i) => ({
+        ...e,
         x: (i - 3) * 34 + (Math.random() * 20 - 10),
         y: -140 - Math.random() * 90,
         r: Math.random() * 60 - 30,
@@ -23,12 +32,12 @@ const FlyingBits = () => {
       {bits.map((b, i) => (
         <motion.span
           key={i}
-          className="absolute text-xl"
+          className={`absolute ${b.c}`}
           initial={{ x: 0, y: 0, opacity: 0, scale: 0.4 }}
           animate={{ x: b.x, y: b.y, opacity: [0, 1, 0], scale: 1, rotate: b.r }}
           transition={{ delay: b.d, duration: 1.3, ease: "easeOut" }}
         >
-          {b.e}
+          <b.Icon size={20} fill="currentColor" stroke="none" />
         </motion.span>
       ))}
     </div>
@@ -90,7 +99,8 @@ const Envelope = ({ open, onOpen }: { open: boolean; onOpen: () => void }) => (
     </motion.div>
     {/* Seal */}
     <motion.div
-      className="absolute left-1/2 top-[62%] z-10 grid h-14 w-14 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border-2 border-[#FFE7B0] bg-gradient-to-br from-rose to-berry font-display text-2xl font-bold text-white shadow-lg"
+      className="absolute left-1/2 top-[55%] z-10 grid h-14 w-14 place-items-center rounded-full border-2 border-[#FFE7B0] bg-gradient-to-br from-rose to-berry font-display text-2xl font-bold leading-none text-white shadow-lg"
+      style={{ x: "-50%", y: "-50%" }}
       animate={open ? { scale: 0, opacity: 0 } : { scale: [1, 1.06, 1] }}
       transition={open ? { duration: 0.25 } : { duration: 1.6, repeat: Infinity }}
       aria-hidden="true"

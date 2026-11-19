@@ -60,6 +60,25 @@
   .falling-heart {
     animation: fall linear infinite;
   }
+  /* Heart-tree crown: each heart pops in on its own delay */
+  .leaf-pop {
+    transform-box: fill-box;
+    transform-origin: 50% 50%;
+    transform: scale(0);
+    animation: leaf-pop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+  /* Heart-tree hanging photos: origin is set inline in viewBox units (the string's knot) */
+  .frame-sway {
+    transform-box: view-box;
+    animation: frame-sway ease-in-out infinite alternate;
+  }
+  /* Heart-tree petals: let go of the crown and drift down, then repeat */
+  .petal-fall {
+    transform-box: fill-box;
+    transform-origin: 50% 50%;
+    opacity: 0;
+    animation: petal-fall ease-in infinite;
+  }
   .string-light {
     box-shadow: 0 0 10px 2px rgba(255, 181, 71, 0.6);
     animation: twinkle 2.4s ease-in-out infinite;
@@ -116,6 +135,41 @@
   }
   to {
     transform: scale(0.94, 1.08) skewX(2deg);
+  }
+}
+
+@keyframes leaf-pop {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes frame-sway {
+  from {
+    transform: rotate(-3deg);
+  }
+  to {
+    transform: rotate(3deg);
+  }
+}
+
+@keyframes petal-fall {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) rotate(0deg) scale(0.55);
+  }
+  12% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--drift, 0px), var(--fall, 180px)) rotate(40deg) scale(0.55);
   }
 }
 

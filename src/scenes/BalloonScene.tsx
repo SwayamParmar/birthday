@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { Heart, Sparkles } from "lucide-react";
 import { gift } from "@/config/gift";
 import { FadeIn, PillButton } from "@/components/Chrome";
 
@@ -25,7 +26,7 @@ const PopBurst = ({ x, y, color }: Omit<Burst, "id">) => {
         const angle = (Math.PI * 2 * i) / 16 + Math.random() * 0.3;
         const dist = 40 + Math.random() * 45;
         const palette = [color, "#FFB547", "#FF6F91", "#9D7BFF", "#3DDBD9"];
-        return { dx: Math.cos(angle) * dist, dy: Math.sin(angle) * dist, size: 4 + Math.random() * 6, c: palette[i % palette.length] };
+        return { dx: Math.cos(angle) * dist, dy: Math.sin(angle) * dist, size: 10 + Math.random() * 8, c: palette[i % palette.length] };
       }),
     [color],
   );
@@ -34,12 +35,14 @@ const PopBurst = ({ x, y, color }: Omit<Burst, "id">) => {
       {bits.map((b, i) => (
         <motion.span
           key={i}
-          className="absolute rounded-full"
-          style={{ width: b.size, height: b.size, background: b.c, marginLeft: -b.size / 2, marginTop: -b.size / 2 }}
+          className="absolute"
+          style={{ width: b.size, height: b.size, color: b.c, marginLeft: -b.size / 2, marginTop: -b.size / 2 }}
           initial={{ x: 0, y: 0, opacity: 1, scale: 1 }}
           animate={{ x: b.dx, y: b.dy + 18, opacity: 0, scale: 0.4 }}
           transition={{ duration: 0.75, ease: "easeOut" }}
-        />
+        >
+          <Sparkles size={b.size} fill="currentColor" strokeWidth={1.5} />
+        </motion.span>
       ))}
     </div>
   );
@@ -149,7 +152,7 @@ export const BalloonScene = ({ onDone }: { onDone: () => void }) => {
             >
               <span className="absolute inset-y-0 left-0 w-1.5" style={{ background: BALLOONS[balloon].color }} aria-hidden="true" />
               <span className="inline-flex items-center gap-1 rounded-full bg-marigold/15 px-2.5 py-0.5 text-[11px] font-extrabold uppercase tracking-[0.14em] text-marigold">
-                Reason {order + 1} <span aria-hidden="true">💗</span>
+                Reason {order + 1} <span aria-hidden="true">✨</span>
               </span>
               <p className="mt-1.5 flex items-start justify-between gap-3 text-[15px] font-semibold leading-snug text-cream sm:text-base">
                 <span>{gift.reasons[order]}</span>
@@ -162,12 +165,12 @@ export const BalloonScene = ({ onDone }: { onDone: () => void }) => {
 
       {allPopped && (
         <FadeIn delay={0.4} className="mt-6">
-          <p className="font-hand text-2xl font-bold text-marigold">…and a thousand more 💛</p>
+          <p className="font-hand text-2xl font-bold text-marigold">…and a thousand more ✨</p>
         </FadeIn>
       )}
       {showButton && (
         <FadeIn className="mt-5">
-          <PillButton onClick={onDone}>Keep going 💛</PillButton>
+          <PillButton onClick={onDone}>Keep going <Heart size={18} className="text-marigold" fill="currentColor" stroke="none" aria-hidden="true" /></PillButton>
         </FadeIn>
       )}
       <div ref={listEndRef} className="h-2" />

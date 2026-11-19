@@ -121,7 +121,7 @@ export const PinLock = ({ onUnlock }: { onUnlock: () => void }) => {
         <p className="mb-2 text-xs font-bold uppercase tracking-[0.22em] text-rose-deep">Sealed with love</p>
         <h1 className="font-serif text-4xl font-bold leading-tight text-ink sm:text-5xl">Hey {gift.name}</h1>
         <p className="mt-3 text-base leading-relaxed text-ink/70">
-          {gift.sender} tucked something away for you. Enter the 4-digit code to unwrap it.
+          {gift.sender} tucked something away for you. Enter the 4-digit code to open it.
         </p>
 
         <motion.div animate={shake} className="mt-7 flex gap-3" role="group" aria-label="4-digit code">
@@ -154,7 +154,7 @@ export const PinLock = ({ onUnlock }: { onUnlock: () => void }) => {
           aria-live="polite"
           className={cn("mt-4 min-h-[1.5rem] text-sm", status === "ok" ? "font-semibold text-mint" : status === "wrong" ? "font-semibold text-rose-deep" : "text-ink/55")}
         >
-          {status === "ok" ? "Unwrapping…" : status === "wrong" ? "Not quite. Try again." : `Don't know it? Ask ${gift.sender}.`}
+          {status === "ok" ? "Opening…" : status === "wrong" ? "Not quite. Try again." : `Don't know it? Ask ${gift.sender}.`}
         </p>
 
         <button
@@ -162,7 +162,7 @@ export const PinLock = ({ onUnlock }: { onUnlock: () => void }) => {
           disabled={status === "ok"}
           className="mt-5 min-h-[54px] w-full rounded-2xl bg-gradient-to-r from-violet to-violet-deep text-lg font-bold text-white shadow-[0_12px_24px_-10px_rgba(108,59,209,0.6)] transition active:scale-[0.98] hover:brightness-110 disabled:opacity-80"
         >
-          Unwrap
+          Open the gift
         </button>
       </form>
     </div>

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { motion, useAnimationControls, type PanInfo } from "framer-motion";
-import { ImageOff } from "lucide-react";
+import { Heart, ImageOff } from "lucide-react";
 import { gift } from "@/config/gift";
 import { asset, cn } from "@/lib/utils";
 import { FadeIn, PillButton } from "@/components/Chrome";
@@ -28,7 +28,7 @@ const Polaroid = ({ src, caption, index, active }: { src: string; caption: strin
         )}
       </div>
       <figcaption className="flex min-h-[3.75rem] items-center justify-center gap-1.5 px-2 py-1.5 text-center font-hand text-lg font-bold leading-tight text-plum-800">
-        <span className="line-clamp-2">{caption}</span> <span className="shrink-0 text-marigold" aria-hidden="true">💛</span>
+        <span className="line-clamp-2">{caption}</span> <Heart size={16} className="shrink-0 text-marigold" fill="currentColor" stroke="none" aria-hidden="true" />
       </figcaption>
     </motion.figure>
   );
@@ -132,7 +132,7 @@ export const MemoryLane = ({ onDone }: { onDone: () => void }) => {
 
       {showButton && (
         <FadeIn className="mt-7">
-          <PillButton onClick={onDone}>Keep going 💛</PillButton>
+          <PillButton onClick={onDone}>Keep going <Heart size={18} className="text-marigold" fill="currentColor" stroke="none" aria-hidden="true" /></PillButton>
         </FadeIn>
       )}
     </div>

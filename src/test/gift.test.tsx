@@ -26,8 +26,8 @@ describe("PinLock", () => {
     const onUnlock = vi.fn();
     render(<PinLock onUnlock={onUnlock} />);
     typeCode(gift.pin);
-    fireEvent.click(screen.getByRole("button", { name: "Unwrap" }));
-    expect(screen.getByText("Unwrapping…")).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "Open the gift" }));
+    expect(screen.getByText("Opening…")).toBeInTheDocument();
     act(() => vi.advanceTimersByTime(1200));
     expect(onUnlock).toHaveBeenCalledOnce();
     vi.useRealTimers();
@@ -38,7 +38,7 @@ describe("PinLock", () => {
     render(<PinLock onUnlock={onUnlock} />);
     const wrong = gift.pin === "0000" ? "1111" : "0000";
     typeCode(wrong);
-    fireEvent.click(screen.getByRole("button", { name: "Unwrap" }));
+    fireEvent.click(screen.getByRole("button", { name: "Open the gift" }));
     expect(screen.getByText("Not quite. Try again.")).toBeInTheDocument();
     expect(onUnlock).not.toHaveBeenCalled();
   });

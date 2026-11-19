@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { gift } from "@/config/gift";
 import { useMusic } from "@/lib/useMusic";
 import { NightSky, TopBar } from "@/components/Chrome";
+import { HeartIntro } from "@/scenes/HeartIntro";
 import { PinLock } from "@/scenes/PinLock";
 import { BowScene } from "@/scenes/BowScene";
 import { TitleCard } from "@/scenes/TitleCard";
@@ -20,8 +21,10 @@ const DARK: Step[] = ["cake", "balloons", "memories", "letter", "finale"];
 const NOT_BACK_TARGETS: Step[] = ["pin", "title"];
 
 export const Gift = () => {
+  const [intro, setIntro] = useState(true);
   const [step, setStep] = useState<Step>("pin");
   const music = useMusic();
+  const endIntro = useCallback(() => setIntro(false), []);
   const index = STEPS.indexOf(step);
   const isDark = DARK.includes(step);
 
@@ -69,17 +72,23 @@ export const Gift = () => {
   return (
     <main className="relative min-h-[100dvh] overflow-x-hidden">
       {isDark && <NightSky />}
-      {step !== "title" && <TopBar onBack={index > 1 ? back : undefined} music={music} tone={isDark ? "dark" : "light"} />}
+      {!intro && step !== "title" && <TopBar onBack={index > 1 ? back : undefined} music={music} tone={isDark ? "dark" : "light"} />}
       <AnimatePresence mode="wait">
-        <motion.div
-          key={step}
-          initial={{ opacity: step === "title" ? 1 : 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: step === "bow" ? 1 : 0 }}
-          transition={{ duration: 0.45 }}
-        >
-          {scene}
-        </motion.div>
+        {intro ? (
+          <motion.div key="intro" exit={{ opacity: 0 }} transition={{ duration: 0.4 }}>
+            <HeartIntro onDone={endIntro} />
+          </motion.div>
+        ) : (
+          <motion.div
+            key={step}
+            initial={{ opacity: step === "title" ? 1 : 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: step === "bow" ? 1 : 0 }}
+            transition={{ duration: 0.45 }}
+          >
+            {scene}
+          </motion.div>
+        )}
       </AnimatePresence>
     </main>
   );

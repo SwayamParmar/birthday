@@ -50,7 +50,7 @@ export const FinaleScene = ({ onReplay }: { onReplay: () => void }) => {
 
         <FadeIn delay={2.2} className="mt-8">
           <p className="text-base text-cream/85">
-            Made for you by <span className="font-bold text-marigold">{gift.sender}</span> 💛
+            Made for you by <span className="font-bold text-marigold">{gift.sender}</span> ❤️
           </p>
         </FadeIn>
         <FadeIn delay={2.8} className="mt-6">
